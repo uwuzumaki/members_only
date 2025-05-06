@@ -1,6 +1,8 @@
 const bcrypt = require("bcryptjs");
-const pool = require("../db/pool");
 const passport = require("passport");
+
+const pool = require("../db/pool");
+const db = require("../db/queries");
 
 const homepage = (req, res) => {
   res.render("homepage");
@@ -13,14 +15,11 @@ const registerGet = (req, res) => {
 const registerPost = async (req, res, next) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    await pool.query(
-      "INSERT INTO member (username, first_name, last_name, password) VAlUES ($1, $2, $3, $4)",
-      [
-        req.body.username,
-        req.body.first_name,
-        req.body.last_name,
-        hashedPassword,
-      ]
+    await db.registerMember(
+      req.body.username,
+      req.body.first_name,
+      req.body.last_name,
+      hashedPassword
     );
     res.redirect("/");
   } catch (err) {
