@@ -1,7 +1,6 @@
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
-const pool = require("../db/pool");
 const db = require("../db/queries");
 
 const homepage = (req, res) => {
