@@ -7,4 +7,12 @@ const registerMember = async (user, first, last, password) => {
   );
 };
 
-module.exports = { registerMember };
+const getOneMember = async (user) => {
+  const { rows } = await pool.query(
+    "SELECT * FROM member WHERE username = $1",
+    [user]
+  );
+  return rows;
+};
+
+module.exports = { registerMember, getOneMember };
