@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
+const { validationResult } = require("express-validator");
 
 const db = require("../db/queries");
 
@@ -12,6 +13,11 @@ const registerGet = (req, res) => {
 };
 
 const registerPost = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     await db.registerMember(
