@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const { validationResult } = require("express-validator");
+require("dotenv").config();
 
 const db = require("../db/queries");
 
@@ -41,10 +42,27 @@ const loginPost = passport.authenticate("local", {
   failureRedirect: "/login",
 });
 
+const specialGet = (req, res) => {
+  res.render("specialGet");
+};
+
+const specialPost = async (req, res) => {
+  const verify =
+    req.body.passcode === process.env.SECRET_PASSCODE ? true : false;
+  if (verify) {
+    await db.updateMemberStatus(req.session.passport.user);
+  } else {
+    throw new Error("That secret passcode is not correct!");
+  }
+  res.redirect("/");
+};
+
 module.exports = {
   homepage,
   registerGet,
   registerPost,
   loginGet,
   loginPost,
+  specialGet,
+  specialPost,
 };
