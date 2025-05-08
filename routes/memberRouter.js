@@ -13,6 +13,7 @@ memberRouter.post(
 );
 memberRouter.get("/login", memberController.loginGet);
 memberRouter.post("/login", memberController.loginPost);
+memberRouter.get("/logout", memberController.logoutPost);
 memberRouter.get("/special", isAuth.isAuth, memberController.specialGet);
 memberRouter.post("/special", memberController.specialPost);
 

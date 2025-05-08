@@ -6,6 +6,7 @@ require("dotenv").config();
 const db = require("../db/queries");
 
 const homepage = (req, res) => {
+  console.log(req.session);
   res.render("homepage");
 };
 
@@ -42,6 +43,13 @@ const loginPost = passport.authenticate("local", {
   failureRedirect: "/login",
 });
 
+const logoutPost = (req, res, next) => {
+  req.logout((err) => {
+    if (err) return next(err);
+  });
+  res.redirect("/");
+};
+
 const specialGet = (req, res) => {
   res.render("specialGet");
 };
@@ -63,6 +71,7 @@ module.exports = {
   registerPost,
   loginGet,
   loginPost,
+  logoutPost,
   specialGet,
   specialPost,
 };
