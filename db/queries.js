@@ -15,4 +15,12 @@ const getOneMember = async (user) => {
   return rows;
 };
 
-module.exports = { registerMember, getOneMember };
+const updateMemberStatus = async (user) => {
+  const { rows } = await pool.query(
+    "UPDATE member SET member_status= TRUE WHERE user_id = $1;",
+    [user]
+  );
+  return rows;
+};
+
+module.exports = { registerMember, getOneMember, updateMemberStatus };
