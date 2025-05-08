@@ -9,7 +9,7 @@ memberRouter.get("/register", memberController.registerGet);
 memberRouter.post(
   "/register",
   registerValidation.registrationValidator,
-  memberController.registerPost
+  memberController.registerPost,
 );
 memberRouter.get("/login", memberController.loginGet);
 memberRouter.post("/login", memberController.loginPost);

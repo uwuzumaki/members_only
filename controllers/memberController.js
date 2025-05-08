@@ -6,8 +6,8 @@ require("dotenv").config();
 const db = require("../db/queries");
 
 const homepage = (req, res) => {
-  console.log(req.session);
-  res.render("homepage");
+  const loggedIn = req.session.passport ? req.session.passport.user : false;
+  res.render("homepage", { loggedIn: loggedIn });
 };
 
 const registerGet = (req, res) => {
@@ -26,7 +26,7 @@ const registerPost = async (req, res, next) => {
       req.body.username,
       req.body.first_name,
       req.body.last_name,
-      hashedPassword
+      hashedPassword,
     );
     res.redirect("/");
   } catch (err) {
