@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Special Signup</title>
+  <%- include("./partials/head.ejs") %>
   </head>
   <body>
+    <%- include("./partials/navbar.ejs") %>
     <h1>Please enter the special code</h1>
     <form action="/special" method="POST">
       <label for="passcode">Code</label>
