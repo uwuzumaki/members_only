@@ -9,7 +9,7 @@ passport.use(
     try {
       const { rows } = await pool.query(
         "SELECT * FROM member WHERE username = $1",
-        [username]
+        [username],
       );
       const user = rows[0];
 
@@ -24,7 +24,7 @@ passport.use(
     } catch (err) {
       return done(err);
     }
-  })
+  }),
 );
 
 passport.serializeUser((user, done) => {
@@ -35,7 +35,7 @@ passport.deserializeUser(async (id, done) => {
   try {
     const { rows } = await pool.query(
       "SELECT * FROM member WHERE user_id = $1",
-      [id]
+      [id],
     );
     const user = rows[0];
 

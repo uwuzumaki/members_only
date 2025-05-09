@@ -8,6 +8,7 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --spacing: 0.25rem;
+    --container-sm: 24rem;
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
     --default-font-family: var(--font-sans);
@@ -181,11 +182,23 @@
   .mx-4 {
     margin-inline: calc(var(--spacing) * 4);
   }
+  .mx-auto {
+    margin-inline: auto;
+  }
   .my-1 {
     margin-block: calc(var(--spacing) * 1);
   }
   .contents {
     display: contents;
+  }
+  .flex {
+    display: flex;
+  }
+  .w-64 {
+    width: calc(var(--spacing) * 64);
+  }
+  .flex-col {
+    flex-direction: column;
   }
   .text-2xl {
     font-size: var(--text-2xl);

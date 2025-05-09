@@ -5,9 +5,9 @@
   <%- include("./partials/head.ejs") %>
   <body>
     <%- include("./partials/navbar.ejs") %>
-    <% if (loggedIn) { %>
-    <%- include("./partials/createPost.ejs") %>
-    <% } %>
-    <%- include("./partials/posts.ejs") %>
+    <div class="container mx-auto flex">
+      <% if (loggedIn) { %> <%- include("./partials/createPost.ejs") %> <% } %>
+      <%- include("./partials/posts.ejs") %>
+    </div>
   </body>
 </html>
