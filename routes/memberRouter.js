@@ -4,7 +4,10 @@ const registerValidation = require("../validation/registerValidation");
 const authentication = require("../utils/authentication");
 const memberRouter = Router();
 
+// Homepage
 memberRouter.get("/", memberController.homepage);
+
+// Register
 memberRouter.get(
   "/register",
   authentication.isNotAuth,
@@ -15,9 +18,15 @@ memberRouter.post(
   registerValidation.registrationValidator,
   memberController.registerPost,
 );
+
+// Login
 memberRouter.get("/login", authentication.isNotAuth, memberController.loginGet);
 memberRouter.post("/login", memberController.loginPost);
+
+// Logout
 memberRouter.get("/logout", memberController.logoutPost);
+
+// Membership
 memberRouter.get(
   "/special",
   authentication.isAuth,
@@ -28,7 +37,12 @@ memberRouter.post(
   authentication.isAuth,
   memberController.specialPost,
 );
+
+// Admin
 memberRouter.get("/admin", authentication.isAuth, memberController.adminGet);
 memberRouter.post("/admin", authentication.isAuth, memberController.adminPost);
+
+// Posts
+memberRouter.post("/createPost", memberController.createPost);
 
 module.exports = memberRouter;

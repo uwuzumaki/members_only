@@ -48,8 +48,12 @@ const loginPost = passport.authenticate("local", {
 const logoutPost = (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err);
+    req.session.destroy((err) => {
+      if (err) return next(err);
+      res.clearCookie("connect.sid");
+      res.redirect("/");
+    });
   });
-  res.redirect("/");
 };
 
 const specialGet = async (req, res) => {
@@ -86,6 +90,17 @@ const adminPost = async (req, res) => {
   res.redirect("/");
 };
 
+const createPost = async (req, res) => {
+  console.log(req.user.user_id, req.body.title, req.body.postContent);
+  const enteredPost = await db.createPost(
+    req.user.user_id,
+    req.body.title,
+    req.body.postContent,
+  );
+  console.log(enteredPost);
+  res.redirect("/");
+};
+
 module.exports = {
   homepage,
   registerGet,
@@ -97,4 +112,5 @@ module.exports = {
   specialPost,
   adminGet,
   adminPost,
+  createPost,
 };

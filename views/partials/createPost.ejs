@@ -1,1 +1,7 @@
-<div>Create post</div>
+<form action="/createPost" method="POST">
+  <label for="title">Title of your post</label>
+  <input type="text" name="title" id="title" />
+  <label for="postContent">Post Content</label>
+  <textarea name="postContent" id="postContent" cols="30" rows="10"></textarea>
+  <button type="submit">Send!</button>
+</form>

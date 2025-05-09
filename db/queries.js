@@ -38,10 +38,19 @@ const updateAdminStatus = async (user) => {
   return rows;
 };
 
+const createPost = async (user, title, content) => {
+  const { rows } = await pool.query(
+    "INSERT INTO posts (poster_id, title, contents) VALUES ($1, $2, $3)",
+    [user, title, content],
+  );
+  return rows;
+};
+
 module.exports = {
   registerMember,
   getOneMemberUsername,
   getOneMemberID,
   updateMemberStatus,
   updateAdminStatus,
+  createPost,
 };
