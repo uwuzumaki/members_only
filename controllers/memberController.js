@@ -4,15 +4,12 @@ const { validationResult } = require("express-validator");
 require("dotenv").config();
 
 const db = require("../db/queries");
+const memberStatus = require("../utils/memberStatus");
 
 const homepage = async (req, res) => {
-  const loggedIn = req.session.passport ? req.session.passport.user : false;
-  let user;
-  if (loggedIn) {
-    const [getUser] = await db.getOneMemberID(req.session.passport.user);
-    user = getUser.member_status;
-  }
-  res.render("homepage", { loggedIn: loggedIn, user: user });
+  const loggedIn = res.locals.loggedIn;
+  const mStatus = loggedIn ? await memberStatus(res.locals.user) : null;
+  res.render("homepage", { loggedIn: loggedIn, user: mStatus });
 };
 
 const registerGet = (req, res) => {
@@ -55,8 +52,10 @@ const logoutPost = (req, res, next) => {
   res.redirect("/");
 };
 
-const specialGet = (req, res) => {
-  res.render("specialGet");
+const specialGet = async (req, res) => {
+  const loggedIn = res.locals.loggedIn;
+  const mStatus = loggedIn ? await memberStatus(res.locals.user) : null;
+  res.render("specialGet", { loggedIn: loggedIn, user: mStatus });
 };
 
 const specialPost = async (req, res) => {
@@ -70,11 +69,10 @@ const specialPost = async (req, res) => {
   res.redirect("/");
 };
 
-const adminGet = (req, res) => {
-  const loggedIn = req.session.passport ? req.session.passport.user : false;
-  if (loggedIn) {
-    res.render("adminGet");
-  }
+const adminGet = async (req, res) => {
+  const loggedIn = res.locals.loggedIn;
+  const mStatus = loggedIn ? await memberStatus(res.locals.user) : null;
+  res.render("adminGet", { loggedIn: loggedIn, user: mStatus });
 };
 
 const adminPost = async (req, res) => {

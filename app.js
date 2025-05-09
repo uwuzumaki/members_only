@@ -17,6 +17,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(sessions());
 app.use(passport.session());
 require("./passport/passport");
+app.use((req, res, next) => {
+  res.locals.loggedIn = req.isAuthenticated();
+  res.locals.user = req.session.passport ? req.user.user_id : null;
+  next();
+});
 
 app.use("/", memberRouter);
 
