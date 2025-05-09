@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+  <body>
+    <%- include('./partials/navbar.ejs') %>
+    <h1>Please enter the admin code</h1>
+    <form action="/admin" method="POST">
+      <label for="admincode">Code</label>
+      <input type="password" name="admincode" id="admincode" />
+      <button type="submit">Sign Up</button>
+    </form>
+  </body>
+</html>
