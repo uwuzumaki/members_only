@@ -53,6 +53,12 @@ const getPosts = async () => {
   return rows;
 };
 
+const deletePost = async (post_id) => {
+  const { rows } = await pool.query("DELETE FROM posts WHERE post_id = $1;", [
+    post_id,
+  ]);
+};
+
 module.exports = {
   registerMember,
   getOneMemberUsername,
@@ -61,4 +67,5 @@ module.exports = {
   updateAdminStatus,
   createPost,
   getPosts,
+  deletePost,
 };
