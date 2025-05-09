@@ -7,7 +7,15 @@ const registerMember = async (user, first, last, password) => {
   );
 };
 
-const getOneMember = async (user) => {
+const getOneMemberUsername = async (user) => {
+  const { rows } = await pool.query(
+    "SELECT * FROM member WHERE username = $1",
+    [user],
+  );
+  return rows;
+};
+
+const getOneMemberID = async (user) => {
   const { rows } = await pool.query("SELECT * FROM member WHERE user_id = $1", [
     user,
   ]);
@@ -22,4 +30,18 @@ const updateMemberStatus = async (user) => {
   return rows;
 };
 
-module.exports = { registerMember, getOneMember, updateMemberStatus };
+const updateAdminStatus = async (user) => {
+  const { rows } = await pool.query(
+    "UPDATE member SET admin_status= TRUE WHERE user_id = $1;",
+    [user],
+  );
+  return rows;
+};
+
+module.exports = {
+  registerMember,
+  getOneMemberUsername,
+  getOneMemberID,
+  updateMemberStatus,
+  updateAdminStatus,
+};
