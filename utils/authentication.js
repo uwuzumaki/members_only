@@ -8,6 +8,15 @@ const isAuth = (req, res, next) => {
   }
 };
 
+const isNotAuth = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    res.status(401).redirect("/");
+  } else {
+    next();
+  }
+};
+
 module.exports = {
   isAuth,
+  isNotAuth,
 };
