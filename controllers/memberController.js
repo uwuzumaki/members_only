@@ -5,9 +5,14 @@ require("dotenv").config();
 
 const db = require("../db/queries");
 
-const homepage = (req, res) => {
+const homepage = async (req, res) => {
   const loggedIn = req.session.passport ? req.session.passport.user : false;
-  res.render("homepage", { loggedIn: loggedIn });
+  let user;
+  if (loggedIn) {
+    const [getUser] = await db.getOneMember(req.session.passport.user);
+    user = getUser.member_status;
+  }
+  res.render("homepage", { loggedIn: loggedIn, user: user });
 };
 
 const registerGet = (req, res) => {
