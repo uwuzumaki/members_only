@@ -11,7 +11,7 @@ const registrationValidator = [
     .trim()
     .escape()
     .custom(async (value) => {
-      const user = await db.getOneMember(value);
+      const user = await db.getOneMemberUsername(value);
       if (user.length) {
         throw new Error("Username already in use");
       }
