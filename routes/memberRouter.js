@@ -16,5 +16,7 @@ memberRouter.post("/login", memberController.loginPost);
 memberRouter.get("/logout", memberController.logoutPost);
 memberRouter.get("/special", isAuth.isAuth, memberController.specialGet);
 memberRouter.post("/special", memberController.specialPost);
+memberRouter.get("/admin", isAuth.isAuth, memberController.adminGet);
+memberRouter.post("/admin", isAuth.isAuth, memberController.adminPost);
 
 module.exports = memberRouter;
