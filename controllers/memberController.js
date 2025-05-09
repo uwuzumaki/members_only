@@ -9,7 +9,7 @@ const homepage = async (req, res) => {
   const loggedIn = req.session.passport ? req.session.passport.user : false;
   let user;
   if (loggedIn) {
-    const [getUser] = await db.getOneMember(req.session.passport.user);
+    const [getUser] = await db.getOneMemberID(req.session.passport.user);
     user = getUser.member_status;
   }
   res.render("homepage", { loggedIn: loggedIn, user: user });
@@ -70,6 +70,24 @@ const specialPost = async (req, res) => {
   res.redirect("/");
 };
 
+const adminGet = (req, res) => {
+  const loggedIn = req.session.passport ? req.session.passport.user : false;
+  if (loggedIn) {
+    res.render("adminGet");
+  }
+};
+
+const adminPost = async (req, res) => {
+  const verify =
+    req.body.admincode === process.env.ADMIN_PASSCODE ? true : false;
+  if (verify) {
+    await db.updateAdminStatus(req.session.passport.user);
+  } else {
+    throw new Error("That admin passcode is not correct!");
+  }
+  res.redirect("/");
+};
+
 module.exports = {
   homepage,
   registerGet,
@@ -79,4 +97,6 @@ module.exports = {
   logoutPost,
   specialGet,
   specialPost,
+  adminGet,
+  adminPost,
 };
