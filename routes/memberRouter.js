@@ -44,5 +44,6 @@ memberRouter.post("/admin", authentication.isAuth, memberController.adminPost);
 
 // Posts
 memberRouter.post("/createPost", memberController.createPost);
+memberRouter.post("/delete/:id", memberController.deletePost);
 
 module.exports = memberRouter;
