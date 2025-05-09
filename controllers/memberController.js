@@ -5,13 +5,20 @@ require("dotenv").config();
 
 const db = require("../db/queries");
 const memberStatus = require("../utils/memberStatus");
+const adminStatus = require("../utils/adminStatus");
 
 const homepage = async (req, res) => {
   const loggedIn = res.locals.loggedIn;
   const mStatus = loggedIn ? await memberStatus(res.locals.user) : null;
+  const aStatus = loggedIn ? await adminStatus(res.locals.user) : null;
   const posts = await db.getPosts();
   console.log(posts);
-  res.render("homepage", { loggedIn: loggedIn, user: mStatus, posts: posts });
+  res.render("homepage", {
+    loggedIn: loggedIn,
+    user: mStatus,
+    admin: aStatus,
+    posts: posts,
+  });
 };
 
 const registerGet = (req, res) => {
@@ -103,6 +110,11 @@ const createPost = async (req, res) => {
   res.redirect("/");
 };
 
+const deletePost = async (req, res) => {
+  await db.deletePost(req.params.id);
+  res.redirect("/");
+};
+
 module.exports = {
   homepage,
   registerGet,
@@ -115,4 +127,5 @@ module.exports = {
   adminGet,
   adminPost,
   createPost,
+  deletePost,
 };
