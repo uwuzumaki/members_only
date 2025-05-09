@@ -1,4 +1,13 @@
 <div>
   <div>Posts</div>
-  <!-- Posts to be implemented -->
+  <div>
+    <% posts.forEach(post => { %>
+    <div>
+      <p><%= post.title %></p>
+      <p><%= post.formatted_date %></p>
+      <p><%= post.username %></p>
+      <p><%= post.contents %></p>
+    </div>
+    <% }); %>
+  </div>
 </div>

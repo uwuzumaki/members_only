@@ -9,7 +9,9 @@ const memberStatus = require("../utils/memberStatus");
 const homepage = async (req, res) => {
   const loggedIn = res.locals.loggedIn;
   const mStatus = loggedIn ? await memberStatus(res.locals.user) : null;
-  res.render("homepage", { loggedIn: loggedIn, user: mStatus });
+  const posts = await db.getPosts();
+  console.log(posts);
+  res.render("homepage", { loggedIn: loggedIn, user: mStatus, posts: posts });
 };
 
 const registerGet = (req, res) => {

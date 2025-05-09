@@ -46,6 +46,13 @@ const createPost = async (user, title, content) => {
   return rows;
 };
 
+const getPosts = async () => {
+  const { rows } = await pool.query(
+    "SELECT posts.*, to_char(posts.created_at::timestamp, 'FMMonth DD, YYYY') AS formatted_date, member.username FROM posts JOIN member ON posts.poster_id = member.user_id;",
+  );
+  return rows;
+};
+
 module.exports = {
   registerMember,
   getOneMemberUsername,
@@ -53,4 +60,5 @@ module.exports = {
   updateMemberStatus,
   updateAdminStatus,
   createPost,
+  getPosts,
 };
