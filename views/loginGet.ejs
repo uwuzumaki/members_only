@@ -3,14 +3,31 @@
   <%- include("./partials/head.ejs") %>
   <body>
     <%- include("./partials/navbar.ejs") %>
-    <h1>Login</h1>
-    <form action="/login" method="POST">
-      <label for="username">Username</label>
-      <input id="username" name="username" placeholder="username" type="text" />
-      <label for="password">Password</label>
-      <input id="password" name="password" type="password" />
-      <button type="submit">Login</button>
-    </form>
+    <div
+      class="container mx-auto flex h-full flex-col items-center justify-center"
+    >
+      <h1>Login</h1>
+      <form
+        class="flex flex-col rounded-lg border-2 border-indigo-300 bg-indigo-200"
+        action="/login"
+        method="POST"
+      >
+        <div class="m-6">
+          <label for="username">Username</label>
+          <input class="lineInput" id="username" name="username" type="text" />
+        </div>
+        <div class="m-6">
+          <label for="password">Password</label>
+          <input
+            class="lineInput"
+            id="password"
+            name="password"
+            type="password"
+          />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
     <%- include("./partials/footer.ejs") %>
   </body>
 </html>

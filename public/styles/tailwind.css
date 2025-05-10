@@ -18,3 +18,7 @@ body {
 .nav {
   @apply container mx-auto flex min-w-full items-center justify-between border-b-2 border-b-red-300 bg-red-200 py-3;
 }
+
+.lineInput {
+  @apply mx-4 border-0 border-b-2 border-solid border-gray-700 bg-transparent px-2 py-1 text-xl text-black duration-300 outline-none focus:border-blue-400 focus:outline-none;
+}
