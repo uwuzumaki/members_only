@@ -1,4 +1,6 @@
-<% const isAdmin = typeof admin !== 'undefined' ? admin : false; %>
+<% const isAdmin = typeof admin !== 'undefined' ? admin : false; %> <% const
+isMember = typeof user !== 'undefined' ? user : false; %>
+
 <div class="container">
   <div class="container m-4 flex flex-wrap items-start justify-center">
     <% posts.forEach(post => { %>
@@ -9,8 +11,11 @@
       </div>
       <p class="m-3 break-words"><%= post.contents %></p>
       <div class="m-3 flex justify-between">
+        <% if(!isMember) { %>
+        <p>*****</p>
+        <% } else { %>
         <p><%= post.username %></p>
-        <% if(isAdmin) { %>
+        <% } %> <% if(isAdmin) { %>
         <form action="/delete/<%= post.post_id %>" method="POST">
           <button type="submit">Delete post</button>
         </form>
