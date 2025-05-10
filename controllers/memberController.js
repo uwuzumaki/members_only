@@ -12,7 +12,6 @@ const homepage = async (req, res) => {
   const mStatus = loggedIn ? await memberStatus(res.locals.user) : null;
   const aStatus = loggedIn ? await adminStatus(res.locals.user) : null;
   const posts = await db.getPosts();
-  console.log(posts);
   res.render("homepage", {
     loggedIn: loggedIn,
     user: mStatus,
@@ -100,13 +99,11 @@ const adminPost = async (req, res) => {
 };
 
 const createPost = async (req, res) => {
-  console.log(req.user.user_id, req.body.title, req.body.postContent);
   const enteredPost = await db.createPost(
     req.user.user_id,
     req.body.title,
     req.body.postContent,
   );
-  console.log(enteredPost);
   res.redirect("/");
 };
 
