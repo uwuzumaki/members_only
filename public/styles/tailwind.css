@@ -7,8 +7,14 @@
 
 html {
   font-family: Nunito;
+  height: 100vh;
+}
+
+body {
+  height: 100vh;
+  @apply flex flex-col bg-linear-to-tl from-sky-200 to-orange-200;
 }
 
 .nav {
-  @apply container min-w-full mx-auto my-3 flex justify-between items-center;
+  @apply container mx-auto flex min-w-full items-center justify-between py-3;
 }
