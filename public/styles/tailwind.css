@@ -20,5 +20,5 @@ body {
 }
 
 .lineInput {
-  @apply mx-4 border-0 border-b-2 border-solid border-gray-700 bg-transparent px-2 py-1 text-xl text-black duration-300 outline-none focus:border-blue-400 focus:outline-none;
+  @apply col-span-2 mx-4 h-1/2 self-end border-0 border-b-2 border-solid border-gray-700 bg-transparent px-2 text-xl text-black duration-300 outline-none focus:border-blue-400 focus:outline-none;
 }

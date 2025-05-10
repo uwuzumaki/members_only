@@ -1,15 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include("./partials/head.ejs") %>
-  </head>
   <body>
     <%- include("./partials/navbar.ejs") %>
-    <h1>Please enter the special code</h1>
-    <form action="/special" method="POST">
-      <label for="passcode">Code</label>
-      <input type="password" name="passcode" id="passcode" />
-      <button type="submit">Sign Up</button>
-    </form>
+    <div
+      class="container mx-auto mt-32 flex flex-col items-center justify-center"
+    >
+      <h1 class="mb-14 text-4xl">Please enter the special code</h1>
+      <form
+        class="flex flex-col justify-self-center rounded-lg border-2 border-indigo-300 bg-indigo-200"
+        action="/special"
+        method="POST"
+      >
+        <div class="m-4 h-max p-2">
+          <label for="passcode">Code</label>
+          <input
+            class="lineInput my-2 py-2"
+            id="passcode"
+            name="passcode"
+            type="password"
+          />
+        </div>
+        <button
+          class="mx-4 my-2 rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+          type="submit"
+        >
+          Sign up
+        </button>
+      </form>
+    </div>
     <%- include("./partials/footer.ejs") %>
   </body>
 </html>
