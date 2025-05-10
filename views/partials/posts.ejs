@@ -1,15 +1,21 @@
-<div>
-  <div>Posts</div>
-  <div>
+<% const isAdmin = typeof admin !== 'undefined' ? admin : false; %>
+<div class="container">
+  <div class="container m-4 flex flex-wrap items-start justify-center">
     <% posts.forEach(post => { %>
-    <div>
-      <p><%= post.title %></p>
-      <p><%= post.formatted_date %></p>
-      <p><%= post.username %></p>
-      <p><%= post.contents %></p>
-      <form action="/delete/<%= post.post_id %>" method="POST">
-        <button type="submit">Delete post</button>
-      </form>
+    <div class="m-4 w-80 rounded-lg border-2 border-lime-300 bg-lime-200">
+      <div class="m-3 flex justify-between">
+        <p class="break-words"><%= post.title %></p>
+        <p><%= post.formatted_date %></p>
+      </div>
+      <p class="m-3 break-words"><%= post.contents %></p>
+      <div class="m-3 flex justify-between">
+        <p><%= post.username %></p>
+        <% if(isAdmin) { %>
+        <form action="/delete/<%= post.post_id %>" method="POST">
+          <button type="submit">Delete post</button>
+        </form>
+        <% } %>
+      </div>
     </div>
     <% }); %>
   </div>
