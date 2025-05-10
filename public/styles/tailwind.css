@@ -16,5 +16,5 @@ body {
 }
 
 .nav {
-  @apply container mx-auto flex min-w-full items-center justify-between py-3;
+  @apply container mx-auto flex min-w-full items-center justify-between border-b-2 border-b-red-300 bg-red-200 py-3;
 }
