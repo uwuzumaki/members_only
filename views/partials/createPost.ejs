@@ -1,7 +1,29 @@
-<form class="flex w-64 flex-col" action="/createPost" method="POST">
-  <label for="title">Title of your post</label>
-  <input type="text" name="title" id="title" />
-  <label for="postContent">Post Content</label>
-  <textarea name="postContent" id="postContent" cols="30" rows="10"></textarea>
-  <button type="submit">Send!</button>
+<form
+  class="my-auto flex w-80 flex-col rounded-lg"
+  action="/createPost"
+  method="POST"
+>
+  <input
+    class="mx-4 mt-2 rounded-xl border-2 border-solid border-blue-300 bg-blue-200 p-2 px-2 text-xl text-black duration-300 outline-none focus:outline-none"
+    type="text"
+    name="title"
+    id="title"
+    placeholder="Title"
+    maxlength="40"
+  />
+  <textarea
+    class="mx-4 mt-2 resize-none overflow-clip rounded-xl border-2 border-solid border-blue-300 bg-blue-200 p-2 px-2 text-xl text-black duration-300 outline-none focus:outline-none"
+    name="postContent"
+    id="postContent"
+    cols="30"
+    rows="7"
+    maxlength="140"
+    placeholder="Share your thoughts!"
+  ></textarea>
+  <button
+    class="mt-2 mr-4 w-fit self-end rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+    type="submit"
+  >
+    Send!
+  </button>
 </form>
