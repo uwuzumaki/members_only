@@ -4,28 +4,38 @@
   <body>
     <%- include("./partials/navbar.ejs") %>
     <div
-      class="container mx-auto flex h-full flex-col items-center justify-center"
+      class="container mx-auto mt-32 flex flex-col items-center justify-center"
     >
-      <h1>Login</h1>
+      <h1 class="text-4xl">Login</h1>
       <form
-        class="flex flex-col rounded-lg border-2 border-indigo-300 bg-indigo-200"
+        class="flex flex-col justify-self-center rounded-lg border-2 border-indigo-300 bg-indigo-200"
         action="/login"
         method="POST"
       >
-        <div class="m-6">
+        <div class="m-4 h-max p-2">
           <label for="username">Username</label>
-          <input class="lineInput" id="username" name="username" type="text" />
+          <input
+            class="lineInput my-2 py-2"
+            id="username"
+            name="username"
+            type="text"
+          />
         </div>
         <div class="m-6">
           <label for="password">Password</label>
           <input
-            class="lineInput"
+            class="lineInput mb-2 pb-2"
             id="password"
             name="password"
             type="password"
           />
         </div>
-        <button type="submit">Login</button>
+        <button
+          class="mx-4 my-2 rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+          type="submit"
+        >
+          Login
+        </button>
       </form>
     </div>
     <%- include("./partials/footer.ejs") %>

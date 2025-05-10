@@ -3,30 +3,54 @@
   <%- include("./partials/head.ejs") %>
   <body>
     <%- include("./partials/navbar.ejs") %>
-    <h1>Register</h1>
-    <form action="/register" method="POST">
-      <label for="username">Username</label>
-      <input id="username" name="username" placeholder="username" type="text" />
-      <label for="first_name">First Name</label>
-      <input
-        id="first_name"
-        name="first_name"
-        placeholder="First Name"
-        type="text"
-      />
-      <label for="last_name">Last Name</label>
-      <input
-        id="last_name"
-        name="last_name"
-        placeholder="Last Name"
-        type="text"
-      />
-      <label for="password">Password</label>
-      <input id="password" name="password" type="password" />
-      <label for="match_password">Confirm Password</label>
-      <input id="match_password" name="match_password" type="password" />
-      <button type="submit">Sign Up</button>
-    </form>
+    <div
+      class="container mx-auto mt-32 flex flex-col items-center justify-center"
+    >
+      <h1 class="text-4xl">Register</h1>
+      <form
+        class="algin-items grid grid-cols-3 grid-rows-6 gap-2 rounded-lg border-2 border-indigo-300 bg-indigo-200"
+        action="/register"
+        method="POST"
+      >
+        <label class="self-end justify-self-end" for="username">Username</label>
+        <input class="lineInput" id="username" name="username" type="text" />
+        <label class="self-end justify-self-end" for="first_name"
+          >First Name</label
+        >
+        <input
+          class="lineInput"
+          id="first_name"
+          name="first_name"
+          type="text"
+        />
+        <label class="self-end justify-self-end" for="last_name"
+          >Last Name</label
+        >
+        <input class="lineInput" id="last_name" name="last_name" type="text" />
+        <label class="self-end justify-self-end" for="password">Password</label>
+        <input
+          class="lineInput"
+          id="password"
+          name="password"
+          type="password"
+        />
+        <label class="self-end justify-self-end" for="match_password"
+          >Confirm Password</label
+        >
+        <input
+          class="lineInput"
+          id="match_password"
+          name="match_password"
+          type="password"
+        />
+        <button
+          class="col-span-3 col-start-1 mx-4 my-2 rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+          type="submit"
+        >
+          Signup
+        </button>
+      </form>
+    </div>
     <%- include("./partials/footer.ejs") %>
   </body>
 </html>
