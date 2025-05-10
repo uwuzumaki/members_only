@@ -108,7 +108,12 @@ const createPost = async (req, res) => {
 };
 
 const deletePost = async (req, res) => {
-  await db.deletePost(req.params.id);
+  const member = await adminStatus(res.locals.user);
+  if (member) {
+    await db.deletePost(req.params.id);
+  } else {
+    throw new Error("You do not have the correct permissions to do that.");
+  }
   res.redirect("/");
 };
 
